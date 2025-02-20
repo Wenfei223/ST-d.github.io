@@ -103,6 +103,7 @@
                 hunger: { value: 0, max: 100, label: '饥饿' },
                 spirit: { value: 0, max: 100, label: '灵力' },
                 evil: { value: 0, max: 100, label: '邪恶值' },
+                intelligence: { value: 0, max: 100, label: '智力' } // 新属性
             },
             actions: [
                 {
@@ -124,6 +125,11 @@
                     label: '蛊惑',
                     effect: { evil: 15, mood: -10, health: -5 },
                     message: '你蛊惑了正太，邪恶值增加了！'
+                },
+                {
+                    label: '学习', // 新操作
+                    effect: { intelligence: 10, mood: -5 },
+                    message: '正太学习了，智力提升了！'
                 }
             ],
             endings: [
@@ -138,6 +144,10 @@
                 {
                     condition: (attributes) => attributes.hunger.value >= attributes.hunger.max,
                     message: '正太饿死了，夺舍失败！'
+                },
+                {
+                    condition: (attributes) => attributes.intelligence.value >= 100, // 新结局
+                    message: '正太成为了天才，你无法夺舍！'
                 }
             ]
         };
